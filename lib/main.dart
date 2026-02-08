@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:magenta_wifi_vision/theme.dart';
-import 'package:magenta_wifi_vision/views/home/scan_view.dart';
 import 'package:magenta_wifi_vision/views/home_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const App());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
+class App extends StatelessWidget {
+  const App({super.key});
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Magenta WifiVision',
       theme: getMagentaTheme(context),
       home: HomeScreen(),
     );

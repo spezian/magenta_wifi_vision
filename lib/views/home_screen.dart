@@ -11,20 +11,41 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int selectedViewIndex = 0;
+  VoidCallback? _fabAction;
+  int _selectedViewIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: [ScanView(), HistoryView(), SizedBox.shrink()][selectedViewIndex],
+      appBar: [
+        null,
+        AppBar(
+          title: Text("History"),
+          centerTitle: true,
+        ),
+        null
+      ][_selectedViewIndex],
+      body: [
+        ScanView(),
+        HistoryView(onFabPressed: (callback) => _fabAction = callback,),
+        SizedBox.shrink()
+      ][_selectedViewIndex],
+      floatingActionButton: [
+        null,
+        FloatingActionButton(
+            onPressed: _fabAction,
+          child: Icon(Icons.add),
+        ),
+        null,
+      ][_selectedViewIndex],
       bottomNavigationBar: NavigationBar(
           onDestinationSelected: (int index) {
             setState(() {
-              selectedViewIndex = index;
+              _selectedViewIndex = index;
             });
           },
           indicatorColor: magentaColour,
-          selectedIndex: selectedViewIndex,
+          selectedIndex: _selectedViewIndex,
           destinations: const <Widget>[
             NavigationDestination(
                 icon: Icon(Icons.home_outlined),

@@ -20,6 +20,15 @@ ThemeData getMagentaTheme(BuildContext context) {
               return null;
             }
         ),
-      )
+      ),
+      appBarTheme: AppBarThemeData(
+        titleTextStyle: TextStyle(
+          color: magentaColour,
+          fontSize: 36.0,
+        )
+      ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: magentaColour,
+    )
   );
 }

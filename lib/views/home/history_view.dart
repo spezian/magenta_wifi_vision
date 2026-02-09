@@ -2,67 +2,166 @@ import 'package:flutter/material.dart';
 import 'package:magenta_wifi_vision/theme.dart';
 
 class HistoryView extends StatefulWidget {
-  final Function(VoidCallback) onFabPressed;
-  const HistoryView({super.key, required this.onFabPressed});
+  final Function(void Function(bool)) onActionFabPressed;
+  final Function(VoidCallback) onCreateFabPressed;
+
+  const HistoryView({
+    super.key,
+    required this.onActionFabPressed,
+    required this.onCreateFabPressed,
+  });
 
   @override
   State<HistoryView> createState() => _HistoryViewState();
 }
 
 class _HistoryViewState extends State<HistoryView> {
+  bool _isAddMode = false;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.onActionFabPressed(_handleActionFabPressed);
+    widget.onCreateFabPressed(_handleCreateFabPressed);
+  }
+
+  void _handleActionFabPressed(bool isClose) {
+    setState(() {
+      _isAddMode = isClose;
+    });
+  }
+
+  void _handleCreateFabPressed() {}
+
+  Map<int, bool> roomValues = {};
+  Map<int, bool> layoutValues = {};
+
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverToBoxAdapter(
-          child: Text(
-              "Room",
-            style: Theme.of(context).textTheme.labelMedium!.copyWith(
-              color: magentaColour
-            )
+    return Padding(
+      padding: const .symmetric(horizontal: 16.0),
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 10.0, top: 10.0),
+              child: Text(
+                "Room",
+                style: Theme.of(
+                  context,
+                ).textTheme.labelMedium!.copyWith(color: magentaColour),
+              ),
+            ),
           ),
-        ),
-        SliverFixedExtentList.builder(
+          SliverFixedExtentList.builder(
             itemBuilder: (context, index) {
-              return DecoratedBox(
+              roomValues[index] = false;
+
+              return Padding(
+                padding: const .only(bottom: 10.0),
+                child: DecoratedBox(
                   decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.surfaceContainer,
+                    color: Colors.black12,
+                    borderRadius: BorderRadius.circular(8.0),
                   ),
-                child: Row(
-                  children: [
-                    Text("$index"),
-                    Icon(Icons.chevron_right),
-                  ],
+                  child: Padding(
+                    padding: const .only(
+                      left: 16.0,
+                      right: 8.0,
+                      top: 10.0,
+                      bottom: 10.0,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "$index",
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        _isAddMode
+                            ? StatefulBuilder(
+                                builder: (context, setState) {
+                                  return Checkbox(
+                                    value: roomValues[index],
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        roomValues[index] = value!;
+                                      });
+                                    },
+                                  );
+                                },
+                              )
+                            : Icon(Icons.chevron_right),
+                      ],
+                    ),
+                  ),
                 ),
               );
             },
-            itemExtent: 48.0
-        ),
-        SliverToBoxAdapter(
-          child: Text(
-              "Layout",
-              style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                  color: magentaColour
-              )
+            itemCount: 3,
+            itemExtent: 58.0,
           ),
-        ),
-        SliverFixedExtentList.builder(
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 10.0),
+              child: Text(
+                "Layout",
+                style: Theme.of(
+                  context,
+                ).textTheme.labelMedium!.copyWith(color: magentaColour),
+              ),
+            ),
+          ),
+          SliverFixedExtentList.builder(
             itemBuilder: (context, index) {
-              return DecoratedBox(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surfaceContainer,
-                ),
-                child: Row(
-                  children: [
-                    Text("$index"),
-                    Icon(Icons.chevron_right),
-                  ],
+              layoutValues[index] = false;
+
+              return Padding(
+                padding: const .only(bottom: 10.0),
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: Colors.black12,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Padding(
+                    padding: const .only(
+                      left: 16.0,
+                      right: 8.0,
+                      top: 10.0,
+                      bottom: 10.0,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "$index",
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        _isAddMode
+                            ? StatefulBuilder(
+                                builder: (context, setState) {
+                                  return Checkbox(
+                                    value: layoutValues[index],
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        layoutValues[index] = value!;
+                                      });
+                                    },
+                                  );
+                                },
+                              )
+                            : Icon(Icons.chevron_right),
+                      ],
+                    ),
+                  ),
                 ),
               );
             },
-            itemExtent: 48.0
-        )
-      ],
+            itemCount: 4,
+            itemExtent: 58.0,
+          ),
+        ],
+      ),
     );
   }
 }

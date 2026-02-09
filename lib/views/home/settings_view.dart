@@ -26,66 +26,18 @@ class _SettingsViewState extends State<SettingsView> {
               context,
             ).textTheme.labelMedium!.copyWith(color: magentaColour),
           ),
-          SizedBox(
-            height: 48.0,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: Colors.black12,
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: Padding(
-                padding: const .only(
-                  left: 16.0,
-                  right: 8.0,
-                  top: 10.0,
-                  bottom: 10.0,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Bluetooth Mode",
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                    Switch(
-                        value: _bluetoothMode,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            _bluetoothMode = value!;
-                          });
-                        }
-                    )
-                  ]
-                ),
-              ),
-            ),
+          SwitchListTile(
+            title: Text("Bluetooth Mode"),
+              value: _bluetoothMode,
+              onChanged: (bool? value) {
+                setState(() {
+                  _bluetoothMode = value!;
+                });
+              }
           ),
-          SizedBox(
-            height: 48.0,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: Colors.black12,
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: Padding(
-                padding: const .only(
-                  left: 16.0,
-                  right: 8.0,
-                  top: 10.0,
-                  bottom: 10.0,
-                ),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "WiFi Settings",
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                      Icon(Icons.chevron_right)
-                    ]
-                ),
-              ),
-            ),
+          ListTile(
+            title: Text("WiFi Settings"),
+            trailing: Icon(Icons.chevron_right),
           ),
           Text(
             "Information",
@@ -93,58 +45,13 @@ class _SettingsViewState extends State<SettingsView> {
               context,
             ).textTheme.labelMedium!.copyWith(color: magentaColour),
           ),
-          SizedBox(
-            height: 48.0,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: Colors.black12,
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: Padding(
-                padding: const .only(
-                  left: 16.0,
-                  right: 8.0,
-                  top: 10.0,
-                  bottom: 10.0,
-                ),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "FAQ",
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                      Icon(Icons.chevron_right)
-                    ]
-                ),
-              ),
-            ),
+          ListTile(
+            title: Text("FAQ"),
+            trailing: Icon(Icons.chevron_right),
           ),
-          SizedBox(
-            height: 48.0,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: Colors.black12,
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: Padding(
-                padding: const .only(
-                  left: 16.0,
-                  right: 8.0,
-                  top: 10.0,
-                  bottom: 10.0,
-                ),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Restart Tutorial",
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                    ]
-                ),
-              ),
-            ),
+          ListTile(
+            title: Text("Restart Tutorial"),
+            trailing: Icon(Icons.chevron_right),
           ),
         ],
       ),

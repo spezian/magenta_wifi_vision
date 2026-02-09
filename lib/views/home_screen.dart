@@ -6,6 +6,7 @@ import 'package:magenta_wifi_vision/views/home/scan_view.dart';
 import 'home/settings_view.dart';
 
 class HomeScreen extends StatefulWidget {
+  bool _historyAddMode = false;
   const HomeScreen({super.key});
 
   @override
@@ -13,11 +14,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  void Function(bool)? _fabAction;
+  bool Function()? _firstFabAction;
   VoidCallback? _secondFabAction;
-  int _selectedViewIndex = 0;
 
-  bool _historyAddMode = false;
+  int _selectedViewIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: [
         ScanView(),
         HistoryView(
-          onActionFabPressed: (callback) => _fabAction = callback,
+          onActionFabPressed: (callback) => _firstFabAction = callback,
           onCreateFabPressed: (callback) => _secondFabAction = callback,
         ),
         SettingsView()
@@ -64,14 +64,13 @@ class _HomeScreenState extends State<HomeScreen> {
             FloatingActionButton(
               onPressed: () {
                 setState(() {
-                  _historyAddMode = !_historyAddMode;
+                  widget._historyAddMode = _firstFabAction!();
                 });
-                _fabAction!(_historyAddMode);
               },
               shape: CircleBorder(),
-              child: _historyAddMode ? Icon(Icons.close) : Icon(Icons.add),
+              child: widget._historyAddMode ? Icon(Icons.close) : Icon(Icons.add),
             ),
-            if (_historyAddMode) ...[
+            if (widget._historyAddMode) ...[
               FloatingActionButton.extended(
                   onPressed: _secondFabAction,
                   shape: RoundedRectangleBorder(borderRadius: .circular(999.0)),

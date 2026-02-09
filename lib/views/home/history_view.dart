@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:magenta_wifi_vision/theme.dart';
 
 class HistoryView extends StatefulWidget {
-  final Function(void Function(bool)) onActionFabPressed;
+  final Function(bool Function()) onActionFabPressed;
   final Function(VoidCallback) onCreateFabPressed;
 
   const HistoryView({
@@ -25,10 +25,12 @@ class _HistoryViewState extends State<HistoryView> {
     widget.onCreateFabPressed(_handleCreateFabPressed);
   }
 
-  void _handleActionFabPressed(bool isClose) {
+  bool _handleActionFabPressed() {
     setState(() {
-      _isAddMode = isClose;
+      _isAddMode = !_isAddMode;
     });
+
+    return _isAddMode;
   }
 
   void _handleCreateFabPressed() {}
@@ -59,42 +61,23 @@ class _HistoryViewState extends State<HistoryView> {
 
               return Padding(
                 padding: const .only(bottom: 10.0),
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: Colors.black12,
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  child: Padding(
-                    padding: const .only(
-                      left: 16.0,
-                      right: 8.0,
-                      top: 10.0,
-                      bottom: 10.0,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "$index",
-                          style: Theme.of(context).textTheme.bodyLarge,
-                        ),
-                        _isAddMode
-                            ? StatefulBuilder(
-                                builder: (context, setState) {
-                                  return Checkbox(
-                                    value: roomValues[index],
-                                    onChanged: (bool? value) {
-                                      setState(() {
-                                        roomValues[index] = value!;
-                                      });
-                                    },
-                                  );
-                                },
-                              )
-                            : Icon(Icons.chevron_right),
-                      ],
-                    ),
-                  ),
+                child: ListTile(
+                  title: Text("$index"),
+
+                  trailing: _isAddMode
+                      ? StatefulBuilder(
+                    builder: (context, setState) {
+                      return Checkbox(
+                        value: roomValues[index],
+                        onChanged: (bool? value) {
+                          setState(() {
+                            roomValues[index] = value!;
+                          });
+                        },
+                      );
+                    },
+                  )
+                      : Icon(Icons.chevron_right),
                 ),
               );
             },
@@ -118,42 +101,23 @@ class _HistoryViewState extends State<HistoryView> {
 
               return Padding(
                 padding: const .only(bottom: 10.0),
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: Colors.black12,
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  child: Padding(
-                    padding: const .only(
-                      left: 16.0,
-                      right: 8.0,
-                      top: 10.0,
-                      bottom: 10.0,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "$index",
-                          style: Theme.of(context).textTheme.bodyLarge,
-                        ),
-                        _isAddMode
-                            ? StatefulBuilder(
-                                builder: (context, setState) {
-                                  return Checkbox(
-                                    value: layoutValues[index],
-                                    onChanged: (bool? value) {
-                                      setState(() {
-                                        layoutValues[index] = value!;
-                                      });
-                                    },
-                                  );
-                                },
-                              )
-                            : Icon(Icons.chevron_right),
-                      ],
-                    ),
-                  ),
+                child: ListTile(
+                  title: Text("$index"),
+
+                  trailing: _isAddMode
+                      ? StatefulBuilder(
+                    builder: (context, setState) {
+                      return Checkbox(
+                        value: layoutValues[index],
+                        onChanged: (bool? value) {
+                          setState(() {
+                            layoutValues[index] = value!;
+                          });
+                        },
+                      );
+                    },
+                  )
+                      : Icon(Icons.chevron_right),
                 ),
               );
             },

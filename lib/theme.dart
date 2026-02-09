@@ -76,7 +76,15 @@ ThemeData getMagentaTheme(BuildContext context) {
 
             return Colors.black;
           }
-      )
-    )
+      ),
+    ),
+    listTileTheme: ListTileThemeData(
+      tileColor: Colors.black12,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0)
+      ),
+      contentPadding: .only(left: 16.0, right: 8.0),
+      visualDensity: VisualDensity.compact
+    ),
   );
 }

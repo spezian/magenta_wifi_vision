@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:magenta_wifi_vision/views/scan_prm_screen.dart';
 
-class ScanView extends StatefulWidget {
-  const ScanView({super.key});
+class StartScanView extends StatefulWidget {
+  const StartScanView({super.key});
 
   @override
-  State<ScanView> createState() => _ScanViewState();
+  State<StartScanView> createState() => _StartScanViewState();
 }
 
-class _ScanViewState extends State<ScanView> {
+class _StartScanViewState extends State<StartScanView> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -27,7 +28,11 @@ class _ScanViewState extends State<ScanView> {
               height: 160.0,
             ),
             FilledButton(
-              onPressed: () {},
+              onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const ScanPRMScreen(),
+                  )
+              ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
                 child: Text(

@@ -63,7 +63,7 @@ class _SettingsViewState extends State<SettingsView> {
             trailing: Icon(Icons.chevron_right),
             onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => const FaqScreen(),
+                  builder: (context) => const FaqSettingsScreen(),
                 )
             ),
           ),

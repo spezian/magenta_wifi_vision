@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:magenta_wifi_vision/theme.dart';
 import 'package:magenta_wifi_vision/views/home/history_view.dart';
-import 'package:magenta_wifi_vision/views/home/scan_view.dart';
+import 'package:magenta_wifi_vision/views/home/start_scan_view.dart';
 import 'package:magenta_wifi_vision/widgets/magenta_app_bar.dart';
 
 import 'home/settings_view.dart';
@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
         MagentaAppBar(title: Text("Settings")),
       ][_selectedViewIndex],
       body: [
-        ScanView(),
+        StartScanView(),
         HistoryView(
           onActionFabPressed: (callback) => _firstFabAction = callback,
           onCreateFabPressed: (callback) => _secondFabAction = callback,

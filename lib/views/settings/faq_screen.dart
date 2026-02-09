@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:magenta_wifi_vision/widgets/magenta_app_bar.dart';
 
-class FaqScreen extends StatefulWidget {
-  const FaqScreen({super.key});
+class FaqSettingsScreen extends StatefulWidget {
+  const FaqSettingsScreen({super.key});
 
   @override
-  State<FaqScreen> createState() => _FaqScreenState();
+  State<FaqSettingsScreen> createState() => _FaqSettingsScreenState();
 }
 
-class _FaqScreenState extends State<FaqScreen> {
+class _FaqSettingsScreenState extends State<FaqSettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

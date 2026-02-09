@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:magenta_wifi_vision/views/settings/faq_screen.dart';
+import 'package:magenta_wifi_vision/views/settings/wifi_screen.dart';
 
 import '../../theme.dart';
 
@@ -11,6 +13,12 @@ class SettingsView extends StatefulWidget {
 
 class _SettingsViewState extends State<SettingsView> {
   bool _bluetoothMode = false;
+
+  @override
+  void initState() {
+    _bluetoothMode = false;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +46,11 @@ class _SettingsViewState extends State<SettingsView> {
           ListTile(
             title: Text("WiFi Settings"),
             trailing: Icon(Icons.chevron_right),
+            onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const WifiSettingsScreen(),
+                )
+            ),
           ),
           Text(
             "Information",
@@ -48,10 +61,15 @@ class _SettingsViewState extends State<SettingsView> {
           ListTile(
             title: Text("FAQ"),
             trailing: Icon(Icons.chevron_right),
+            onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const FaqScreen(),
+                )
+            ),
           ),
           ListTile(
             title: Text("Restart Tutorial"),
-            trailing: Icon(Icons.chevron_right),
+            onTap: () {},
           ),
         ],
       ),

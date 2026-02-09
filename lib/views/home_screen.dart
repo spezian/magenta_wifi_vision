@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:magenta_wifi_vision/theme.dart';
 import 'package:magenta_wifi_vision/views/home/history_view.dart';
 import 'package:magenta_wifi_vision/views/home/scan_view.dart';
+import 'package:magenta_wifi_vision/widgets/magenta_app_bar.dart';
 
 import 'home/settings_view.dart';
 
 class HomeScreen extends StatefulWidget {
-  bool _historyAddMode = false;
   const HomeScreen({super.key});
 
   @override
@@ -16,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   bool Function()? _firstFabAction;
   VoidCallback? _secondFabAction;
+  bool _fabActionState = false;
 
   int _selectedViewIndex = 0;
 
@@ -24,26 +25,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: [
         null,
-        AppBar(
-          title: Text("History"),
-          bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(8.0),
-              child: Container(
-                color: Colors.black12,
-                height: 1.0,
-              )
-          ),
-        ),
-        AppBar(
-          title: Text("Settings"),
-          bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(8.0),
-              child: Container(
-                color: Colors.black12,
-                height: 1.0,
-              )
-          ),
-        ),
+        MagentaAppBar(title: Text("History")),
+        MagentaAppBar(title: Text("Settings")),
       ][_selectedViewIndex],
       body: [
         ScanView(),
@@ -64,13 +47,13 @@ class _HomeScreenState extends State<HomeScreen> {
             FloatingActionButton(
               onPressed: () {
                 setState(() {
-                  widget._historyAddMode = _firstFabAction!();
+                  _fabActionState = _firstFabAction!();
                 });
               },
               shape: CircleBorder(),
-              child: widget._historyAddMode ? Icon(Icons.close) : Icon(Icons.add),
+              child: _fabActionState ? Icon(Icons.close) : Icon(Icons.add),
             ),
-            if (widget._historyAddMode) ...[
+            if (_fabActionState) ...[
               FloatingActionButton.extended(
                   onPressed: _secondFabAction,
                   shape: RoundedRectangleBorder(borderRadius: .circular(999.0)),
@@ -93,6 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: NavigationBar(
             onDestinationSelected: (int index) {
               setState(() {
+                _fabActionState = false;
                 _selectedViewIndex = index;
               });
             },

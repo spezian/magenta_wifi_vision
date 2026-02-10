@@ -21,7 +21,7 @@ class MagentaSmallButton extends StatelessWidget {
                 side: border ? BorderSide(color: Colors.black) : BorderSide.none
               ),
           ),
-          padding: WidgetStatePropertyAll<EdgeInsetsGeometry?>(.symmetric(horizontal: 16.0)),
+          padding: WidgetStatePropertyAll<EdgeInsetsGeometry?>(.symmetric(horizontal: 0.0)),
         ),
         onPressed: onPressed,
         child: child

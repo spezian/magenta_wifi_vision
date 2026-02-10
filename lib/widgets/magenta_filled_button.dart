@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:magenta_wifi_vision/theme.dart';
-enum MagentaSmallButtonColor { magenta, black }
+enum MagentaFilledButtonColor {
+  magenta(magentaColour),
+  black(Colors.black);
 
-class MagentaSmallButton extends StatelessWidget {
+  const MagentaFilledButtonColor(this.value);
+  final Color value;
+}
+
+class MagentaFilledButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final bool border;
-  final MagentaSmallButtonColor color;
+  final MagentaFilledButtonColor color;
   final Widget? child;
-  const MagentaSmallButton({super.key, this.onPressed, this.border = false, this.color = .magenta, this.child, });
+  const MagentaFilledButton({super.key, this.onPressed, this.border = false, this.color = .magenta, this.child, });
 
   @override
   Widget build(BuildContext context) {
     return FilledButton(
         style: ButtonStyle(
-          backgroundColor: WidgetStatePropertyAll<Color?>(color == .magenta ? magentaColour : Colors.black),
+          backgroundColor: WidgetStatePropertyAll<Color?>(color.value),
           textStyle: WidgetStatePropertyAll<TextStyle?>(TextStyle(fontSize: 22.0)),
           shape: WidgetStatePropertyAll<OutlinedBorder?>(
               RoundedRectangleBorder(
@@ -21,7 +27,8 @@ class MagentaSmallButton extends StatelessWidget {
                 side: border ? BorderSide(color: Colors.black) : BorderSide.none
               ),
           ),
-          padding: WidgetStatePropertyAll<EdgeInsetsGeometry?>(.symmetric(horizontal: 0.0)),
+          minimumSize: WidgetStatePropertyAll<Size?>(Size(80.0, 38.0)),
+          padding: WidgetStatePropertyAll<EdgeInsetsGeometry?>(.zero),
         ),
         onPressed: onPressed,
         child: child

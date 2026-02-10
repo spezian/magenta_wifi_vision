@@ -61,23 +61,26 @@ class _HistoryViewState extends State<HistoryView> {
 
               return Padding(
                 padding: const .only(bottom: 10.0),
-                child: ListTile(
-                  title: Text("$index"),
-
-                  trailing: _isAddMode
-                      ? StatefulBuilder(
-                    builder: (context, setState) {
-                      return Checkbox(
-                        value: roomValues[index],
-                        onChanged: (bool? value) {
-                          setState(() {
-                            roomValues[index] = value!;
-                          });
-                        },
-                      );
-                    },
-                  )
-                      : Icon(Icons.chevron_right),
+                child: StatefulBuilder(
+                  builder: (context, setState) {
+                    return ListTile(
+                      title: Text("$index"),
+                      onTap: _isAddMode
+                          ? () => setState(() {
+                        roomValues[index] = !roomValues[index]!;
+                      }) : null,
+                      trailing: _isAddMode
+                          ? Checkbox(
+                            value: roomValues[index],
+                            onChanged: (bool? value) {
+                              setState(() {
+                                roomValues[index] = value!;
+                              });
+                            },
+                          )
+                          : Icon(Icons.chevron_right),
+                    );
+                  }
                 ),
               );
             },
@@ -101,23 +104,26 @@ class _HistoryViewState extends State<HistoryView> {
 
               return Padding(
                 padding: const .only(bottom: 10.0),
-                child: ListTile(
-                  title: Text("$index"),
-
-                  trailing: _isAddMode
-                      ? StatefulBuilder(
-                    builder: (context, setState) {
-                      return Checkbox(
-                        value: layoutValues[index],
-                        onChanged: (bool? value) {
-                          setState(() {
-                            layoutValues[index] = value!;
-                          });
-                        },
-                      );
-                    },
-                  )
-                      : Icon(Icons.chevron_right),
+                child: StatefulBuilder(
+                  builder: (context, setState) {
+                    return ListTile(
+                      title: Text("$index"),
+                      onTap: _isAddMode
+                        ? () => setState(() {
+                        layoutValues[index] = !layoutValues[index]!;
+                      }) : null,
+                      trailing: _isAddMode
+                          ? Checkbox(
+                            value: layoutValues[index],
+                            onChanged: (bool? value) {
+                              setState(() {
+                                layoutValues[index] = value!;
+                              });
+                            },
+                          )
+                          : Icon(Icons.chevron_right),
+                    );
+                  }
                 ),
               );
             },

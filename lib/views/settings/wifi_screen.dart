@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:magenta_wifi_vision/widgets/magenta_app_bar.dart';
-import 'package:magenta_wifi_vision/widgets/magenta_buttons.dart';
+import 'package:magenta_wifi_vision/widgets/magenta_filled_button.dart';
 
 import '../../theme.dart';
 
@@ -69,7 +69,7 @@ class _WifiSettingsScreenState extends State<WifiSettingsScreen> {
                           return null;
                         },
                       ),
-                      MagentaSmallButton(
+                      MagentaFilledButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
 

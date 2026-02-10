@@ -6,7 +6,8 @@ import 'package:ar_flutter_plugin_plus/managers/ar_session_manager.dart';
 import 'package:ar_flutter_plugin_plus/models/ar_node.dart';
 import 'package:flutter/material.dart';
 import 'package:ar_flutter_plugin_plus/ar_flutter_plugin.dart';
-import 'package:magenta_wifi_vision/widgets/magenta_buttons.dart';
+import 'package:magenta_wifi_vision/widgets/magenta_dialog.dart';
+import 'package:magenta_wifi_vision/widgets/magenta_filled_button.dart';
 import 'package:magenta_wifi_vision/widgets/scan_button.dart';
 import 'package:vector_math/vector_math_64.dart' hide Colors;
 
@@ -97,30 +98,19 @@ class _ScanPRMScreenState extends State<ScanPRMScreen> {
                           showDialog(
                               context: context,
                               builder: (context) {
-                                return AlertDialog(
-                                  title: Text("Room Complete", textAlign: .center,),
-                                  content: Text("Do you want to finish the scan?", textAlign: .center,),
-                                  contentPadding: .only(top: 2.0, bottom: 12.0),
-                                  actionsAlignment: .center,
+                                return MagentaDialog(
+                                  title: Text("Room Complete",),
+                                  content: Text("Do you want to finish the scan?"),
                                   actions: [
-                                    Row(
-                                      spacing: 8.0,
-                                      children: [
-                                        Expanded(
-                                          child: MagentaSmallButton(
-                                            onPressed: () {},
-                                            child: Text("Yes"),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: MagentaSmallButton(
-                                            onPressed: () => Navigator.of(context).maybePop(),
-                                            color: .black,
-                                            child: Text("No"),
-                                          ),
-                                        ),
-                                      ],
-                                    )
+                                    MagentaFilledButton(
+                                      onPressed: () {},
+                                      child: Text("Yes"),
+                                    ),
+                                    MagentaFilledButton(
+                                      onPressed: () => Navigator.of(context).maybePop(),
+                                      color: .black,
+                                      child: Text("No"),
+                                    ),
                                   ],
                                 );
                               }

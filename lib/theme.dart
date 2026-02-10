@@ -123,13 +123,5 @@ ThemeData getMagentaTheme(BuildContext context) {
       fillColor: Colors.white,
       filled: true,
     ),
-    dialogTheme: DialogThemeData(
-      backgroundColor: Colors.white,
-      shape: RoundedRectangleBorder(
-        side: BorderSide(color: Colors.black, width: 2.0),
-        borderRadius: .circular(16.0)
-      ),
-      contentTextStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.black),
-    ),
   );
 }

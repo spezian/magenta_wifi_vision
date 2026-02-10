@@ -36,7 +36,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         SettingsView()
       ][_selectedViewIndex],
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: [
         null,
         Column(

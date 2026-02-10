@@ -63,8 +63,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/Deutsche_Telekom_2022.svg
-    - assets/mario_obj.glb
+    - assets/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

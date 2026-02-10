@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:magenta_wifi_vision/theme.dart';
+import 'package:magenta_wifi_vision/views/heatmap_screen.dart';
 
 class HistoryView extends StatefulWidget {
   final Function(bool Function()) onActionFabPressed;
@@ -68,7 +69,11 @@ class _HistoryViewState extends State<HistoryView> {
                       onTap: _isAddMode
                           ? () => setState(() {
                         roomValues[index] = !roomValues[index]!;
-                      }) : null,
+                      }) : () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const HeatmapScreen(),
+                          )
+                      ),
                       trailing: _isAddMode
                           ? Checkbox(
                             value: roomValues[index],
@@ -111,7 +116,11 @@ class _HistoryViewState extends State<HistoryView> {
                       onTap: _isAddMode
                         ? () => setState(() {
                         layoutValues[index] = !layoutValues[index]!;
-                      }) : null,
+                      }) : () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const HeatmapScreen(),
+                          )
+                      ),
                       trailing: _isAddMode
                           ? Checkbox(
                             value: layoutValues[index],

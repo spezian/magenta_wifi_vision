@@ -7,6 +7,7 @@ class MagentaTextFormField extends StatefulWidget {
   final String? hintText;
   final String? labelText;
   final bool obscureText;
+  final TextEditingController? controller;
   final String? Function(String?)? validator;
 
   const MagentaTextFormField({
@@ -14,6 +15,7 @@ class MagentaTextFormField extends StatefulWidget {
     this.hintText,
     this.labelText,
     this.obscureText = false,
+    this.controller,
     this.validator,
   });
 
@@ -81,6 +83,7 @@ class _MagentaTextFormFieldState extends State<MagentaTextFormField> {
               )
             : null,
       ),
+      controller: widget.controller,
       obscuringCharacter: '*',
       obscureText: widget.obscureText,
       validator: widget.validator != null

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:magenta_wifi_vision/views/settings/faq_screen.dart';
 import 'package:magenta_wifi_vision/views/settings/wifi_screen.dart';
 
-import '../../theme.dart';
+import '../../widgets/magenta_label.dart';
 
 class SettingsView extends StatefulWidget {
   const SettingsView({super.key});
@@ -28,12 +28,7 @@ class _SettingsViewState extends State<SettingsView> {
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: 10.0,
         children: [
-          Text(
-            "General",
-            style: Theme.of(
-              context,
-            ).textTheme.labelMedium!.copyWith(color: magentaColour),
-          ),
+          MagentaLabel("General"),
           SwitchListTile(
             title: Text("Bluetooth Mode"),
               value: _bluetoothMode,
@@ -52,12 +47,7 @@ class _SettingsViewState extends State<SettingsView> {
                 )
             ),
           ),
-          Text(
-            "Information",
-            style: Theme.of(
-              context,
-            ).textTheme.labelMedium!.copyWith(color: magentaColour),
-          ),
+          MagentaLabel("Information"),
           ListTile(
             title: Text("FAQ"),
             trailing: Icon(Icons.chevron_right),

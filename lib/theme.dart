@@ -74,11 +74,6 @@ ThemeData getMagentaTheme(BuildContext context) {
         return TextStyle(color: foregroundColor, fontSize: 12.0);
       }),
     ),
-    appBarTheme: AppBarThemeData(
-      titleTextStyle: TextStyle(color: magentaColour, fontSize: 36.0),
-      backgroundColor: backgroundColor,
-      centerTitle: true,
-    ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: magentaColour,
       foregroundColor: backgroundColor,

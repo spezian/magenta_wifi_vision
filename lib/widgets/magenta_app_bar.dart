@@ -11,6 +11,9 @@ class MagentaAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: title,
+      titleTextStyle: TextStyle(color: magentaColour, fontSize: 36.0),
+      backgroundColor: backgroundColor,
+      centerTitle: true,
       leading: ModalRoute.of(context)?.impliesAppBarDismissal ?? false
           ? IconButton(
               icon: Icon(Icons.chevron_left),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:magenta_wifi_vision/theme.dart';
 import 'package:magenta_wifi_vision/views/heatmap_screen.dart';
+
+import '../../widgets/magenta_label.dart';
 
 class HistoryView extends StatefulWidget {
   final Function(bool Function()) onActionFabPressed;
@@ -48,12 +49,7 @@ class _HistoryViewState extends State<HistoryView> {
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.only(bottom: 10.0, top: 10.0),
-              child: Text(
-                "Room",
-                style: Theme.of(
-                  context,
-                ).textTheme.labelMedium!.copyWith(color: magentaColour),
-              ),
+              child: MagentaLabel("Room"),
             ),
           ),
           SliverFixedExtentList.builder(
@@ -95,12 +91,7 @@ class _HistoryViewState extends State<HistoryView> {
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.only(bottom: 10.0),
-              child: Text(
-                "Layout",
-                style: Theme.of(
-                  context,
-                ).textTheme.labelMedium!.copyWith(color: magentaColour),
-              ),
+              child: MagentaLabel("Layout"),
             ),
           ),
           SliverFixedExtentList.builder(

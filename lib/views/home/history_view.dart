@@ -64,24 +64,25 @@ class _HistoryViewState extends State<HistoryView> {
                       title: Text("$index"),
                       onTap: _isAddMode
                           ? () => setState(() {
-                        roomValues[index] = !roomValues[index]!;
-                      }) : () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const HeatmapScreen(),
-                          )
-                      ),
+                              roomValues[index] = !roomValues[index]!;
+                            })
+                          : () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => const HeatmapScreen(),
+                              ),
+                            ),
                       trailing: _isAddMode
                           ? Checkbox(
-                            value: roomValues[index],
-                            onChanged: (bool? value) {
-                              setState(() {
-                                roomValues[index] = value!;
-                              });
-                            },
-                          )
+                              value: roomValues[index],
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  roomValues[index] = value!;
+                                });
+                              },
+                            )
                           : Icon(Icons.chevron_right),
                     );
-                  }
+                  },
                 ),
               );
             },
@@ -105,25 +106,26 @@ class _HistoryViewState extends State<HistoryView> {
                     return ListTile(
                       title: Text("$index"),
                       onTap: _isAddMode
-                        ? () => setState(() {
-                        layoutValues[index] = !layoutValues[index]!;
-                      }) : () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const HeatmapScreen(),
-                          )
-                      ),
+                          ? () => setState(() {
+                              layoutValues[index] = !layoutValues[index]!;
+                            })
+                          : () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => const HeatmapScreen(),
+                              ),
+                            ),
                       trailing: _isAddMode
                           ? Checkbox(
-                            value: layoutValues[index],
-                            onChanged: (bool? value) {
-                              setState(() {
-                                layoutValues[index] = value!;
-                              });
-                            },
-                          )
+                              value: layoutValues[index],
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  layoutValues[index] = value!;
+                                });
+                              },
+                            )
                           : Icon(Icons.chevron_right),
                     );
-                  }
+                  },
                 ),
               );
             },

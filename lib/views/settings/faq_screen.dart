@@ -13,9 +13,7 @@ class _FaqSettingsScreenState extends State<FaqSettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MagentaAppBar(title: Text("FAQ")),
-      body: Center(
-        child: Text("was letzte rewrite?"),
-      ),
+      body: Center(child: Text("was letzte rewrite?")),
     );
   }
 }

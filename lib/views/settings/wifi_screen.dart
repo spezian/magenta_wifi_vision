@@ -32,11 +32,11 @@ class _WifiSettingsScreenState extends State<WifiSettingsScreen> {
               ).textTheme.labelMedium!.copyWith(color: magentaColour),
             ),
             DecoratedBox(
-                decoration: BoxDecoration(
-                  color: greyColor,
-                  border: Border.all(color: Colors.black),
-                  borderRadius: BorderRadius.circular(8.0)
-                ),
+              decoration: BoxDecoration(
+                color: greyColor,
+                border: Border.all(color: Colors.black),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
               child: Padding(
                 padding: const .symmetric(horizontal: 8.0, vertical: 10.0),
                 child: Form(
@@ -48,10 +48,10 @@ class _WifiSettingsScreenState extends State<WifiSettingsScreen> {
                         hintText: 'SSID - Placeholder',
                         labelText: 'WiFi - SSID',
                         validator: (String? value) {
-                            if (value == null || value.isEmpty) {
-                              return "Please enter some text.";
-                            }
-                            return null;
+                          if (value == null || value.isEmpty) {
+                            return "Please enter some text.";
+                          }
+                          return null;
                         },
                       ),
                       MagentaTextFormField(
@@ -67,18 +67,16 @@ class _WifiSettingsScreenState extends State<WifiSettingsScreen> {
                       ),
                       MagentaFilledButton(
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-
-                          }
+                          if (_formKey.currentState!.validate()) {}
                         },
                         border: true,
                         child: Text("Save"),
-                      )
+                      ),
                     ],
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

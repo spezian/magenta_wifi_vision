@@ -4,7 +4,7 @@ class MagentaOutlineInputBorder extends OutlineInputBorder {
   const MagentaOutlineInputBorder({
     super.borderRadius,
     super.borderSide,
-    super.gapPadding
+    super.gapPadding,
   });
 
   @override
@@ -23,17 +23,13 @@ class MagentaOutlineInputBorder extends OutlineInputBorder {
 
   @override
   void paint(
-      final Canvas canvas,
-      final Rect rect, {
-        final double? gapStart,
-        final double gapExtent = 0.0,
-        final double gapPercentage = 0.0,
-        final TextDirection? textDirection,
-      }) {
-    super.paint(
-      canvas,
-      rect,
-      textDirection: textDirection,
-    );
+    final Canvas canvas,
+    final Rect rect, {
+    final double? gapStart,
+    final double gapExtent = 0.0,
+    final double gapPercentage = 0.0,
+    final TextDirection? textDirection,
+  }) {
+    super.paint(canvas, rect, textDirection: textDirection);
   }
 }

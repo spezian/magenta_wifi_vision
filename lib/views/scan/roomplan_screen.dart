@@ -61,10 +61,9 @@ class _ScanRoomplanScreenState extends State<ScanRoomplanScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: !_isScanning ? MagentaAppBar(title: Text("Roomplan Test")) : null,
-      body: _isScanning ? SizedBox.shrink()
-          : Center(
-        child: Text("$numberOfWalls"),
-      )
+      body: _isScanning
+          ? SizedBox.shrink()
+          : Center(child: Text("$numberOfWalls")),
     );
   }
 }

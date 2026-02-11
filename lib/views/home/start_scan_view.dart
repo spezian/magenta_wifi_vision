@@ -26,10 +26,7 @@ class _StartScanViewState extends State<StartScanView> {
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Icon(
-                Icons.wifi_rounded,
-                size: 100.0
-            ),
+            Icon(Icons.wifi_rounded, size: 100.0),
             SvgPicture.asset(
               "assets/Deutsche_Telekom_2022.svg",
               width: 160.0,
@@ -41,54 +38,55 @@ class _StartScanViewState extends State<StartScanView> {
 
                 if (!Platform.isIOS || !(await RoomPlanScanner.isSupported())) {
                   Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const ScanPRMScreen(),
-                      )
+                    MaterialPageRoute(
+                      builder: (context) => const ScanPRMScreen(),
+                    ),
                   );
 
                   return;
                 }
 
                 showDialog(
-                    context: context,
-                    builder: (context) {
-                      return MagentaDialog(
-                        title: Text("Which tech?"),
-                        actions: [
-                          MagentaFilledButton(
-                            onPressed: () {
-                              Navigator.of(context).maybePop();
+                  context: context,
+                  builder: (context) {
+                    return MagentaDialog(
+                      title: Text("Which tech?"),
+                      actions: [
+                        MagentaFilledButton(
+                          onPressed: () {
+                            Navigator.of(context).maybePop();
 
-                              Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => const ScanRoomplanScreen(),
-                                  )
-                              );
-                            },
-                            child: Text("Roomplan"),
-                          ),
-                          MagentaFilledButton(
-                            onPressed: () {
-                              Navigator.of(context).maybePop();
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const ScanRoomplanScreen(),
+                              ),
+                            );
+                          },
+                          child: Text("Roomplan"),
+                        ),
+                        MagentaFilledButton(
+                          onPressed: () {
+                            Navigator.of(context).maybePop();
 
-                              Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => const ScanPRMScreen(),
-                                  )
-                              );
-                            },
-                            color: .black,
-                            child: Text("PRM"),
-                          ),
-                        ],
-                      );
-                    }
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => const ScanPRMScreen(),
+                              ),
+                            );
+                          },
+                          color: .black,
+                          child: Text("PRM"),
+                        ),
+                      ],
+                    );
+                  },
                 );
               },
               child: Text("Start Scan"),
             ),
           ],
-        )
+        ),
       ],
     );
   }

@@ -12,9 +12,7 @@ class _HeatmapScreenState extends State<HeatmapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MagentaAppBar(
-          title: Text("Layout Name"),
-      ),
+      appBar: MagentaAppBar(title: Text("Layout Name")),
       body: Stack(
         children: [
           Align(
@@ -29,13 +27,13 @@ class _HeatmapScreenState extends State<HeatmapScreen> {
                     margin: .only(top: 36.0),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                          begin: .centerLeft,
-                          end: .centerRight,
-                          colors: <Color>[
-                            Colors.green,
-                            Colors.yellow,
-                            Colors.red,
-                          ]
+                        begin: .centerLeft,
+                        end: .centerRight,
+                        colors: <Color>[
+                          Colors.green,
+                          Colors.yellow,
+                          Colors.red,
+                        ],
                       ),
                     ),
                   ),
@@ -43,26 +41,23 @@ class _HeatmapScreenState extends State<HeatmapScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                          "Good",
+                        "Good",
                         style: Theme.of(context).textTheme.labelLarge,
                       ),
                       Text(
-                          "Bad",
+                        "Bad",
                         style: Theme.of(context).textTheme.labelLarge,
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
-            )
+            ),
           ),
           Align(
             alignment: Alignment.center,
-            child: Image.asset(
-                "assets/example_heatmap.png",
-              scale: 2,
-            ),
-          )
+            child: Image.asset("assets/example_heatmap.png", scale: 2),
+          ),
         ],
       ),
       floatingActionButton: Column(
@@ -71,7 +66,7 @@ class _HeatmapScreenState extends State<HeatmapScreen> {
         spacing: 8.0,
         children: [
           FloatingActionButton(
-              onPressed: () {},
+            onPressed: () {},
             shape: CircleBorder(),
             child: Icon(Icons.edit_outlined),
           ),

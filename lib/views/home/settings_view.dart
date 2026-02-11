@@ -31,20 +31,20 @@ class _SettingsViewState extends State<SettingsView> {
           MagentaLabel("General"),
           SwitchListTile(
             title: Text("Bluetooth Mode"),
-              value: _bluetoothMode,
-              onChanged: (bool? value) {
-                setState(() {
-                  _bluetoothMode = value!;
-                });
-              }
+            value: _bluetoothMode,
+            onChanged: (bool? value) {
+              setState(() {
+                _bluetoothMode = value!;
+              });
+            },
           ),
           ListTile(
             title: Text("WiFi Settings"),
             trailing: Icon(Icons.chevron_right),
             onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const WifiSettingsScreen(),
-                )
+              MaterialPageRoute(
+                builder: (context) => const WifiSettingsScreen(),
+              ),
             ),
           ),
           MagentaLabel("Information"),
@@ -52,15 +52,12 @@ class _SettingsViewState extends State<SettingsView> {
             title: Text("FAQ"),
             trailing: Icon(Icons.chevron_right),
             onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const FaqSettingsScreen(),
-                )
+              MaterialPageRoute(
+                builder: (context) => const FaqSettingsScreen(),
+              ),
             ),
           ),
-          ListTile(
-            title: Text("Restart Tutorial"),
-            onTap: () {},
-          ),
+          ListTile(title: Text("Restart Tutorial"), onTap: () {}),
         ],
       ),
     );

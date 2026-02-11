@@ -11,50 +11,17 @@ final magentaTextTheme = Typography.blackMountainView.copyWith(
     fontFamily: 'Inter',
     fontSize: 36.0,
   ),
-  headlineMedium: TextStyle(
-    color: magentaColour,
-    fontFamily: 'Inter',
-  ),
-  headlineSmall: TextStyle(
-    color: magentaColour,
-    fontFamily: 'Inter',
-  ),
-  titleLarge: TextStyle(
-    color: foregroundColor,
-    fontFamily: 'ABeeZee',
-  ),
-  titleMedium: TextStyle(
-    color: foregroundColor,
-    fontFamily: 'ABeeZee',
-  ),
-  titleSmall: TextStyle(
-    color: foregroundColor,
-    fontFamily: 'ABeeZee',
-  ),
-  bodyLarge: TextStyle(
-    color: foregroundColor,
-    fontFamily: 'ABeeZee',
-  ),
-  bodyMedium: TextStyle(
-    color: foregroundColor,
-    fontFamily: 'ABeeZee',
-  ),
-  bodySmall: TextStyle(
-    color: foregroundColor,
-    fontFamily: 'ABeeZee',
-  ),
-  labelLarge: TextStyle(
-    color: foregroundColor,
-    fontFamily: 'ABeeZee',
-  ),
-  labelMedium: TextStyle(
-    color: foregroundColor,
-    fontFamily: 'ABeeZee',
-  ),
-  labelSmall: TextStyle(
-      color: foregroundColor,
-      fontFamily: 'ABeeZee'
-  ),
+  headlineMedium: TextStyle(color: magentaColour, fontFamily: 'Inter'),
+  headlineSmall: TextStyle(color: magentaColour, fontFamily: 'Inter'),
+  titleLarge: TextStyle(color: foregroundColor, fontFamily: 'ABeeZee'),
+  titleMedium: TextStyle(color: foregroundColor, fontFamily: 'ABeeZee'),
+  titleSmall: TextStyle(color: foregroundColor, fontFamily: 'ABeeZee'),
+  bodyLarge: TextStyle(color: foregroundColor, fontFamily: 'ABeeZee'),
+  bodyMedium: TextStyle(color: foregroundColor, fontFamily: 'ABeeZee'),
+  bodySmall: TextStyle(color: foregroundColor, fontFamily: 'ABeeZee'),
+  labelLarge: TextStyle(color: foregroundColor, fontFamily: 'ABeeZee'),
+  labelMedium: TextStyle(color: foregroundColor, fontFamily: 'ABeeZee'),
+  labelSmall: TextStyle(color: foregroundColor, fontFamily: 'ABeeZee'),
 );
 
 ThemeData getMagentaTheme(BuildContext context) {

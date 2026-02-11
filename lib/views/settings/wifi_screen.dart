@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:magenta_wifi_vision/widgets/magenta_app_bar.dart';
 import 'package:magenta_wifi_vision/widgets/magenta_filled_button.dart';
+import 'package:magenta_wifi_vision/widgets/magenta_text_form_field.dart';
 
 import '../../theme.dart';
 
@@ -43,28 +44,23 @@ class _WifiSettingsScreenState extends State<WifiSettingsScreen> {
                   child: Column(
                     spacing: 4.0,
                     children: [
-                      TextFormField(
-                        decoration: const InputDecoration(
-                            hintText: 'SSID - Placeholder',
-                            labelText: 'WiFi - SSID'
-                        ),
+                      MagentaTextFormField(
+                        hintText: 'SSID - Placeholder',
+                        labelText: 'WiFi - SSID',
                         validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return "Please enter some Text";
-                          }
-                          return null;
+                            if (value == null || value.isEmpty) {
+                              return "Please enter some text.";
+                            }
+                            return null;
                         },
                       ),
-                      TextFormField(
-                        decoration: const InputDecoration(
-                            hintText: '*****************',
-                            labelText: 'WiFi - Password',
-                        ),
+                      MagentaTextFormField(
+                        hintText: '*****************',
+                        labelText: 'WiFi - Password',
                         obscureText: true,
-                        obscuringCharacter: '*',
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return "Please enter a Password";
+                            return "Please enter a password.";
                           }
                           return null;
                         },

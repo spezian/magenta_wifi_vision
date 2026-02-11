@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:magenta_wifi_vision/widgets/magenta_outline_input_border.dart';
 
 const magentaColour = Color.fromRGBO(226, 0, 116, 1);
 const foregroundColor = Colors.black;
@@ -130,45 +129,6 @@ ThemeData getMagentaTheme(BuildContext context) {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
       contentPadding: .only(left: 16.0, right: 8.0),
       visualDensity: VisualDensity.compact,
-    ),
-    inputDecorationTheme: InputDecorationThemeData(
-      enabledBorder: MagentaOutlineInputBorder(
-        borderRadius: .circular(16.0),
-        borderSide: BorderSide(color: foregroundColor, width: 1.0),
-      ),
-      focusedBorder: MagentaOutlineInputBorder(
-        borderRadius: .circular(16.0),
-        borderSide: BorderSide(color: magentaColour, width: 1.0),
-      ),
-      errorBorder: MagentaOutlineInputBorder(
-        borderRadius: .circular(16.0),
-        borderSide: BorderSide(color: Colors.red[900]!, width: 2.0),
-      ),
-      focusedErrorBorder: MagentaOutlineInputBorder(
-        borderRadius: .circular(16.0),
-        borderSide: BorderSide(color: Colors.red, width: 2.0),
-      ),
-      floatingLabelStyle: WidgetStateTextStyle.resolveWith((
-        Set<WidgetState> states,
-      ) {
-        if (states.contains(WidgetState.focused) && states.contains(WidgetState.error)) {
-          return TextStyle(color: Colors.red);
-        }
-
-        if (states.contains(WidgetState.focused)) {
-          return TextStyle(color: magentaColour);
-        }
-
-        if (states.contains(WidgetState.error)) {
-          return TextStyle(color: Colors.red[900]);
-        }
-
-        return TextStyle(color: Colors.grey[800]);
-      }),
-      hintStyle: TextStyle(color: Colors.grey[800]),
-      floatingLabelBehavior: FloatingLabelBehavior.always,
-      fillColor: Colors.white,
-      filled: true,
     ),
   );
 }

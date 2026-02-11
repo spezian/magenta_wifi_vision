@@ -4,7 +4,8 @@ class MagentaDialog extends StatelessWidget {
   final Widget? title;
   final Widget? content;
   final List<Widget>? actions;
-  const MagentaDialog({super.key, this.title, this.content, this.actions});
+  final bool showBackChevron;
+  const MagentaDialog({super.key, this.title, this.content, this.showBackChevron = false, this.actions});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,31 @@ class MagentaDialog extends StatelessWidget {
     }
 
     return AlertDialog(
-      title: titleWidget,
+      title: showBackChevron && title != null ? Stack(
+        children: [
+          Align(
+            alignment: AlignmentGeometry.topLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 0.0, top: 2.0),
+              child: IconButton(
+                  onPressed: () => Navigator.of(context).maybePop(),
+                  icon: Icon(Icons.chevron_left, size: 32.0,)
+              ),
+            ),
+          ),
+          Padding(
+            padding: const .only(top: 24.0),
+            child: Align(
+              alignment: AlignmentGeometry.center,
+              child: titleWidget!,
+            ),
+          ),
+        ],
+      ) : Padding(
+        padding: const .only(top: 24.0),
+        child: titleWidget,
+      ),
+      titlePadding: .zero,
       content: contentWidget,
       contentPadding: .only(top: 2.0, bottom: 12.0),
       actionsAlignment: .center,

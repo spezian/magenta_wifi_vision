@@ -49,7 +49,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   _fabActionState = _firstFabAction!();
                 });
               },
-              shape: CircleBorder(),
               child: _fabActionState ? Icon(Icons.close) : Icon(Icons.add),
             ),
             if (_fabActionState) ...[

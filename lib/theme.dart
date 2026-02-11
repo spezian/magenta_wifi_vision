@@ -2,94 +2,92 @@ import 'package:flutter/material.dart';
 import 'package:magenta_wifi_vision/widgets/magenta_outline_input_border.dart';
 
 const magentaColour = Color.fromRGBO(226, 0, 116, 1);
-const standardColor = Colors.black;
+const foregroundColor = Colors.black;
+const backgroundColor = Colors.white;
 const greyColor = Colors.black12;
+
+final magentaTextTheme = Typography.blackMountainView.copyWith(
+  headlineLarge: TextStyle(
+    color: magentaColour,
+    fontFamily: 'Inter',
+    fontSize: 36.0,
+  ),
+  headlineMedium: TextStyle(
+    color: magentaColour,
+    fontFamily: 'Inter',
+  ),
+  headlineSmall: TextStyle(
+    color: magentaColour,
+    fontFamily: 'Inter',
+  ),
+  titleLarge: TextStyle(
+    color: foregroundColor,
+    fontFamily: 'ABeeZee',
+  ),
+  titleMedium: TextStyle(
+    color: foregroundColor,
+    fontFamily: 'ABeeZee',
+  ),
+  titleSmall: TextStyle(
+    color: foregroundColor,
+    fontFamily: 'ABeeZee',
+  ),
+  bodyLarge: TextStyle(
+    color: foregroundColor,
+    fontFamily: 'ABeeZee',
+  ),
+  bodyMedium: TextStyle(
+    color: foregroundColor,
+    fontFamily: 'ABeeZee',
+  ),
+  bodySmall: TextStyle(
+    color: foregroundColor,
+    fontFamily: 'ABeeZee',
+  ),
+  labelLarge: TextStyle(
+    color: foregroundColor,
+    fontFamily: 'ABeeZee',
+  ),
+  labelMedium: TextStyle(
+    color: foregroundColor,
+    fontFamily: 'ABeeZee',
+  ),
+  labelSmall: TextStyle(
+      color: foregroundColor,
+      fontFamily: 'ABeeZee'
+  ),
+);
 
 ThemeData getMagentaTheme(BuildContext context) {
   return ThemeData(
     colorScheme: ColorScheme.fromSeed(seedColor: magentaColour),
-    textTheme: Typography.blackMountainView.copyWith(
-      headlineLarge: TextStyle(
-        color: magentaColour,
-        fontFamily: 'Inter',
-        fontSize: 36.0,
-      ),
-      headlineMedium: TextStyle(
-        color: magentaColour,
-        fontFamily: 'Inter',
-      ),
-      headlineSmall: TextStyle(
-        color: magentaColour,
-        fontFamily: 'Inter',
-      ),
-      titleLarge: TextStyle(
-        color: standardColor,
-        fontFamily: 'ABeeZee',
-      ),
-      titleMedium: TextStyle(
-        color: standardColor,
-        fontFamily: 'ABeeZee',
-      ),
-      titleSmall: TextStyle(
-        color: standardColor,
-        fontFamily: 'ABeeZee',
-      ),
-      bodyLarge: TextStyle(
-        color: standardColor,
-        fontFamily: 'ABeeZee',
-      ),
-      bodyMedium: TextStyle(
-        color: standardColor,
-        fontFamily: 'ABeeZee',
-      ),
-      bodySmall: TextStyle(
-        color: standardColor,
-        fontFamily: 'ABeeZee',
-      ),
-      labelLarge: TextStyle(
-        color: standardColor,
-        fontFamily: 'ABeeZee',
-      ),
-      labelMedium: TextStyle(
-        color: standardColor,
-        fontFamily: 'ABeeZee',
-      ),
-      labelSmall: TextStyle(
-        color: standardColor,
-        fontFamily: 'ABeeZee'
-      ),
-    ),
-    scaffoldBackgroundColor: Colors.white,
-    filledButtonTheme: FilledButtonThemeData(
-      style: ButtonStyle(
-        backgroundColor: WidgetStatePropertyAll<Color>(magentaColour),
-      ),
-    ),
+    textTheme: magentaTextTheme,
+    scaffoldBackgroundColor: backgroundColor,
     navigationBarTheme: NavigationBarThemeData(
       labelTextStyle: WidgetStateProperty.resolveWith<TextStyle?>((
         Set<WidgetState> states,
       ) {
         if (states.contains(WidgetState.selected)) {
-          return Theme.of(
-            context,
-          ).textTheme.labelMedium!.copyWith(color: magentaColour);
+          return TextStyle(color: magentaColour, fontSize: 12.0);
         }
 
-        return null;
+        return TextStyle(color: foregroundColor, fontSize: 12.0);
       }),
     ),
     appBarTheme: AppBarThemeData(
       titleTextStyle: TextStyle(color: magentaColour, fontSize: 36.0),
+      backgroundColor: backgroundColor,
       centerTitle: true,
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: magentaColour,
-      foregroundColor: Colors.white,
+      foregroundColor: backgroundColor,
+      shape: CircleBorder(),
     ),
     checkboxTheme: CheckboxThemeData(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(6.0),
-        side: BorderSide(color: Colors.black, width: 2.0),
+        side: BorderSide(color: foregroundColor, width: 2.0),
       ),
       visualDensity: VisualDensity.compact,
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -100,7 +98,7 @@ ThemeData getMagentaTheme(BuildContext context) {
           return magentaColour;
         }
 
-        return Colors.white;
+        return backgroundColor;
       }),
     ),
     switchTheme: SwitchThemeData(
@@ -111,16 +109,16 @@ ThemeData getMagentaTheme(BuildContext context) {
           return magentaColour;
         }
 
-        return Colors.white;
+        return backgroundColor;
       }),
       thumbColor: WidgetStateProperty.resolveWith<Color?>((
         Set<WidgetState> states,
       ) {
         if (states.contains(WidgetState.selected)) {
-          return Colors.white;
+          return backgroundColor;
         }
 
-        return Colors.black;
+        return foregroundColor;
       }),
       trackOutlineColor: WidgetStateProperty.resolveWith<Color?>((
         Set<WidgetState> states,
@@ -129,11 +127,11 @@ ThemeData getMagentaTheme(BuildContext context) {
           return Colors.transparent;
         }
 
-        return Colors.black;
+        return foregroundColor;
       }),
     ),
     listTileTheme: ListTileThemeData(
-      tileColor: Colors.black12,
+      tileColor: greyColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
       contentPadding: .only(left: 16.0, right: 8.0),
       visualDensity: VisualDensity.compact,
@@ -141,7 +139,7 @@ ThemeData getMagentaTheme(BuildContext context) {
     inputDecorationTheme: InputDecorationThemeData(
       enabledBorder: MagentaOutlineInputBorder(
         borderRadius: .circular(16.0),
-        borderSide: BorderSide(color: Colors.black, width: 1.0),
+        borderSide: BorderSide(color: foregroundColor, width: 1.0),
       ),
       focusedBorder: MagentaOutlineInputBorder(
         borderRadius: .circular(16.0),

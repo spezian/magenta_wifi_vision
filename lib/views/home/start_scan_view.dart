@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:magenta_wifi_vision/views/scan/prm_screen.dart';
 import 'package:magenta_wifi_vision/views/scan/roomplan_screen.dart';
 import 'package:magenta_wifi_vision/widgets/magenta_dialog.dart';
+import 'package:magenta_wifi_vision/widgets/magenta_pill_button.dart';
 import 'dart:io' show Platform;
 
 import 'package:roomplan_flutter/api/room_plan_scanner.dart';
@@ -34,7 +35,7 @@ class _StartScanViewState extends State<StartScanView> {
               width: 160.0,
               height: 160.0,
             ),
-            FilledButton(
+            MagentaPillButton.large(
               onPressed: () async {
                 if (!mounted) return;
 
@@ -84,14 +85,8 @@ class _StartScanViewState extends State<StartScanView> {
                     }
                 );
               },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
-                child: Text(
-                    "Start Scan",
-                    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.normal)
-                ),
-              ),
-            )
+              child: Text("Start Scan"),
+            ),
           ],
         )
       ],

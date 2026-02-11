@@ -20,7 +20,7 @@ class MagentaFilledButton extends StatelessWidget {
     return FilledButton(
         style: ButtonStyle(
           backgroundColor: WidgetStatePropertyAll<Color?>(color.value),
-          textStyle: WidgetStatePropertyAll<TextStyle?>(TextStyle(fontSize: 22.0)),
+          textStyle: WidgetStatePropertyAll<TextStyle?>(Theme.of(context).textTheme.titleLarge),
           shape: WidgetStatePropertyAll<OutlinedBorder?>(
               RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(6.0),

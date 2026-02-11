@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:magenta_wifi_vision/theme.dart';
 import 'package:magenta_wifi_vision/views/home/history_view.dart';
 import 'package:magenta_wifi_vision/views/home/start_scan_view.dart';
-import 'package:magenta_wifi_vision/widgets/magenta_app_bar.dart';
+import 'package:magenta_wifi_vision/widgets/app_bar.dart';
 
 import 'home/settings_view.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:magenta_wifi_vision/widgets/magenta_app_bar.dart';
-import 'package:magenta_wifi_vision/widgets/magenta_filled_button.dart';
-import 'package:magenta_wifi_vision/widgets/magenta_text_form_field.dart';
+import 'package:magenta_wifi_vision/widgets/app_bar.dart';
+import 'package:magenta_wifi_vision/widgets/filled_button.dart';
+import 'package:magenta_wifi_vision/widgets/text_form_field.dart';
 
 import '../../theme.dart';
 

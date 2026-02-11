@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:magenta_wifi_vision/views/heatmap_screen.dart';
 
-import '../../widgets/magenta_label.dart';
+import '../../widgets/label.dart';
 
 class HistoryView extends StatefulWidget {
   final Function(bool Function()) onActionFabPressed;

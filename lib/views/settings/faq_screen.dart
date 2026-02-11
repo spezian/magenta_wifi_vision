@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:magenta_wifi_vision/widgets/magenta_app_bar.dart';
+import 'package:magenta_wifi_vision/widgets/app_bar.dart';
 
 class FaqSettingsScreen extends StatefulWidget {
   const FaqSettingsScreen({super.key});

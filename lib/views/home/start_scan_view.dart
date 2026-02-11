@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:magenta_wifi_vision/views/scan/prm_screen.dart';
 import 'package:magenta_wifi_vision/views/scan/roomplan_screen.dart';
-import 'package:magenta_wifi_vision/widgets/magenta_dialog.dart';
-import 'package:magenta_wifi_vision/widgets/magenta_pill_button.dart';
+import 'package:magenta_wifi_vision/widgets/dialog.dart';
+import 'package:magenta_wifi_vision/widgets/pill_button.dart';
 import 'dart:io' show Platform;
 
 import 'package:roomplan_flutter/api/room_plan_scanner.dart';
 
-import '../../widgets/magenta_filled_button.dart';
+import '../../widgets/filled_button.dart';
 
 class StartScanView extends StatefulWidget {
   const StartScanView({super.key});

@@ -6,8 +6,8 @@ import 'package:ar_flutter_plugin_plus/managers/ar_session_manager.dart';
 import 'package:ar_flutter_plugin_plus/models/ar_node.dart';
 import 'package:flutter/material.dart';
 import 'package:ar_flutter_plugin_plus/ar_flutter_plugin.dart';
-import 'package:magenta_wifi_vision/widgets/magenta_dialog.dart';
-import 'package:magenta_wifi_vision/widgets/magenta_filled_button.dart';
+import 'package:magenta_wifi_vision/widgets/dialog.dart';
+import 'package:magenta_wifi_vision/widgets/filled_button.dart';
 import 'package:magenta_wifi_vision/widgets/scan_button.dart';
 import 'package:vector_math/vector_math_64.dart' hide Colors;
 

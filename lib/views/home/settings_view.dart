@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:magenta_wifi_vision/views/settings/faq_screen.dart';
 import 'package:magenta_wifi_vision/views/settings/wifi_screen.dart';
 
-import '../../widgets/magenta_label.dart';
+import '../../widgets/label.dart';
 
 class SettingsView extends StatefulWidget {
   const SettingsView({super.key});

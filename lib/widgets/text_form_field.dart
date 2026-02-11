@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../theme.dart';
-import 'magenta_outline_input_border.dart';
+import 'outline_input_border.dart';
 
 class MagentaTextFormField extends StatefulWidget {
   final String? hintText;

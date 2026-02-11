@@ -2,10 +2,64 @@ import 'package:flutter/material.dart';
 import 'package:magenta_wifi_vision/widgets/magenta_outline_input_border.dart';
 
 const magentaColour = Color.fromRGBO(226, 0, 116, 1);
+const standardColor = Colors.black;
+const greyColor = Colors.black12;
 
 ThemeData getMagentaTheme(BuildContext context) {
   return ThemeData(
     colorScheme: ColorScheme.fromSeed(seedColor: magentaColour),
+    textTheme: Typography.blackMountainView.copyWith(
+      headlineLarge: TextStyle(
+        color: magentaColour,
+        fontFamily: 'Inter',
+        fontSize: 36.0,
+      ),
+      headlineMedium: TextStyle(
+        color: magentaColour,
+        fontFamily: 'Inter',
+      ),
+      headlineSmall: TextStyle(
+        color: magentaColour,
+        fontFamily: 'Inter',
+      ),
+      titleLarge: TextStyle(
+        color: standardColor,
+        fontFamily: 'ABeeZee',
+      ),
+      titleMedium: TextStyle(
+        color: standardColor,
+        fontFamily: 'ABeeZee',
+      ),
+      titleSmall: TextStyle(
+        color: standardColor,
+        fontFamily: 'ABeeZee',
+      ),
+      bodyLarge: TextStyle(
+        color: standardColor,
+        fontFamily: 'ABeeZee',
+      ),
+      bodyMedium: TextStyle(
+        color: standardColor,
+        fontFamily: 'ABeeZee',
+      ),
+      bodySmall: TextStyle(
+        color: standardColor,
+        fontFamily: 'ABeeZee',
+      ),
+      labelLarge: TextStyle(
+        color: standardColor,
+        fontFamily: 'ABeeZee',
+      ),
+      labelMedium: TextStyle(
+        color: standardColor,
+        fontFamily: 'ABeeZee',
+      ),
+      labelSmall: TextStyle(
+        color: standardColor,
+        fontFamily: 'ABeeZee'
+      ),
+    ),
+    scaffoldBackgroundColor: Colors.white,
     filledButtonTheme: FilledButtonThemeData(
       style: ButtonStyle(
         backgroundColor: WidgetStatePropertyAll<Color>(magentaColour),

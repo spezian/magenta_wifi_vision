@@ -32,7 +32,7 @@ class _WifiSettingsScreenState extends State<WifiSettingsScreen> {
             ),
             DecoratedBox(
                 decoration: BoxDecoration(
-                  color: Colors.black12,
+                  color: greyColor,
                   border: Border.all(color: Colors.black),
                   borderRadius: BorderRadius.circular(8.0)
                 ),

@@ -11,7 +11,7 @@ class MagentaDialog extends StatelessWidget {
     Widget? titleWidget;
     if (title != null) {
       titleWidget = DefaultTextStyle(
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.black),
+          style: Theme.of(context).textTheme.titleLarge!,
           textAlign: TextAlign.center,
           child: title!
       );
@@ -20,7 +20,7 @@ class MagentaDialog extends StatelessWidget {
     Widget? contentWidget;
     if (content != null) {
       contentWidget = DefaultTextStyle(
-          style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.black),
+          style: Theme.of(context).textTheme.bodyLarge!,
           textAlign: TextAlign.center,
           child: content!
       );

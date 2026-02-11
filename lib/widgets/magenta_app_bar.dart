@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../theme.dart';
+
 class MagentaAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget title;
 
@@ -18,7 +20,7 @@ class MagentaAppBar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       bottom: PreferredSize(
         preferredSize: const Size.fromHeight(8.0),
-        child: Container(color: Colors.black12, height: 1.0),
+        child: Container(color: greyColor, height: 1.0),
       ),
     );
   }

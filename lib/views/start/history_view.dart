@@ -18,11 +18,14 @@ class HistoryView extends StatefulWidget {
 }
 
 class _HistoryViewState extends State<HistoryView> {
+  /// Shows if the user is currently trying to create a new layout.
   bool _isAddMode = false;
 
   @override
   void initState() {
     super.initState();
+
+    // Give the FABs from StartScreen a function.
     widget.onActionFabPressed(_handleActionFabPressed);
     widget.onCreateFabPressed(_handleCreateFabPressed);
   }
@@ -37,6 +40,7 @@ class _HistoryViewState extends State<HistoryView> {
 
   void _handleCreateFabPressed() {}
 
+  // So we can save the state of the tiles. For demonstration purposes.
   Map<int, bool> roomValues = {};
   Map<int, bool> layoutValues = {};
 
@@ -44,14 +48,22 @@ class _HistoryViewState extends State<HistoryView> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const .symmetric(horizontal: 16.0),
+
+      // We use a CustomScrollView to implement multiple lists and static widgets in one scrollable list.
+      // Instead of widgets it uses slivers which are widgets specific for scrollable lists.
       child: CustomScrollView(
         slivers: [
+          // We use this to add normal widgets.
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.only(bottom: 10.0, top: 10.0),
               child: MagentaLabel("Room"),
             ),
           ),
+
+          // Room
+          // We already know the height of each tile so we can use this builder
+          // so that every child has the same height because it's more performant.
           SliverFixedExtentList.builder(
             itemBuilder: (context, index) {
               roomValues[index] = false;
@@ -63,9 +75,11 @@ class _HistoryViewState extends State<HistoryView> {
                     return ListTile(
                       title: Text("$index"),
                       onTap: _isAddMode
+                          // Show checkboxes if we want to create a new layout.
                           ? () => setState(() {
                               roomValues[index] = !roomValues[index]!;
                             })
+                          // Else just show the heatmap.
                           : () => Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) => const HeatmapScreen(),
@@ -89,12 +103,15 @@ class _HistoryViewState extends State<HistoryView> {
             itemCount: 3,
             itemExtent: 58.0,
           ),
+
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.only(bottom: 10.0),
               child: MagentaLabel("Layout"),
             ),
           ),
+
+          // Layout
           SliverFixedExtentList.builder(
             itemBuilder: (context, index) {
               layoutValues[index] = false;

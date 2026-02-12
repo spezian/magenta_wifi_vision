@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Don't ask what happens here.
 class MagentaOutlineInputBorder extends OutlineInputBorder {
   const MagentaOutlineInputBorder({
     super.borderRadius,

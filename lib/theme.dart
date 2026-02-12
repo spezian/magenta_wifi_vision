@@ -1,3 +1,5 @@
+/// Here we define the global style of our App. Here we can also style the provided Material Widgets.
+/// Some specific styling is outsourced to individual widgets in /lib/widgets.
 import 'package:flutter/material.dart';
 
 const magentaColour = Color.fromRGBO(226, 0, 116, 1);
@@ -5,6 +7,7 @@ const foregroundColor = Colors.black;
 const backgroundColor = Colors.white;
 const greyColor = Colors.black12;
 
+/// Set the fonts from the figma.
 final magentaTextTheme = Typography.blackMountainView.copyWith(
   headlineLarge: TextStyle(
     color: magentaColour,
@@ -24,6 +27,7 @@ final magentaTextTheme = Typography.blackMountainView.copyWith(
   labelSmall: TextStyle(color: foregroundColor, fontFamily: 'ABeeZee'),
 );
 
+/// Main theme of our app.
 ThemeData getMagentaTheme(BuildContext context) {
   return ThemeData(
     colorScheme: ColorScheme.fromSeed(seedColor: magentaColour),

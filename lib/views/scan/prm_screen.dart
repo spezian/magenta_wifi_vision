@@ -31,6 +31,7 @@ class _ScanPRMScreenState extends State<ScanPRMScreen> {
     super.initState();
   }
 
+  /// Configures and initialises the ARView.
   void onARViewCreated(
     ARSessionManager arSessionManager,
     ARObjectManager arObjectManager,
@@ -49,6 +50,7 @@ class _ScanPRMScreenState extends State<ScanPRMScreen> {
     );
     _arObjectManager!.onInitialize();
 
+    // We place a Mario 3d model at the world origin.
     var marioNode = ARNode(
       type: NodeType.localGLB,
       uri: "assets/mario_obj.glb",
@@ -56,7 +58,6 @@ class _ScanPRMScreenState extends State<ScanPRMScreen> {
       position: Vector3(0.0, 0.0, 0.0),
       rotation: Vector4(1.0, 0.0, 0.0, 0.0),
     );
-
     _arObjectManager!.addNode(marioNode);
   }
 
@@ -66,6 +67,7 @@ class _ScanPRMScreenState extends State<ScanPRMScreen> {
       builder: (context) {
         return Form(
           key: _formKey,
+          // -> We give it a key so that we can validate the Form later in a button.
           child: MagentaDialog(
             title: Text("Name your room"),
             showBackChevron: true,
@@ -85,10 +87,9 @@ class _ScanPRMScreenState extends State<ScanPRMScreen> {
                   if (_formKey.currentState!.validate()) {
                     Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(
-                        builder: (context) =>
-                        const HeatmapScreen(),
+                        builder: (context) => const HeatmapScreen(),
                       ),
-                            (Route<dynamic> route) => route.isFirst
+                      (Route<dynamic> route) => route.isFirst,
                     );
                   }
                 },
@@ -97,7 +98,7 @@ class _ScanPRMScreenState extends State<ScanPRMScreen> {
             ],
           ),
         );
-      }
+      },
     );
   }
 
@@ -117,8 +118,7 @@ class _ScanPRMScreenState extends State<ScanPRMScreen> {
               child: Text("Yes"),
             ),
             MagentaFilledButton(
-              onPressed: () =>
-                  Navigator.of(context).maybePop(),
+              onPressed: () => Navigator.of(context).maybePop(),
               color: .black,
               child: Text("No"),
             ),
@@ -131,10 +131,14 @@ class _ScanPRMScreenState extends State<ScanPRMScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Disallowing keyboard to resize scaffold.
       resizeToAvoidBottomInset: false,
+
       body: Stack(
         children: [
           ARView(onARViewCreated: onARViewCreated),
+
+          // Back button
           Align(
             alignment: Alignment.topLeft,
             child: SafeArea(
@@ -147,6 +151,7 @@ class _ScanPRMScreenState extends State<ScanPRMScreen> {
               ),
             ),
           ),
+
           Align(
             alignment: Alignment.bottomCenter,
             child: SafeArea(
@@ -154,6 +159,7 @@ class _ScanPRMScreenState extends State<ScanPRMScreen> {
                 mainAxisAlignment: .center,
                 spacing: 16.0,
                 children: [
+                  // Switch object
                   Padding(
                     padding: const .only(bottom: 48.0),
                     child: ScanButton(
@@ -162,6 +168,8 @@ class _ScanPRMScreenState extends State<ScanPRMScreen> {
                       icon: Icon(Icons.house, size: 42.0),
                     ),
                   ),
+
+                  // Add object / Save map
                   Padding(
                     padding: const .only(bottom: 128.0),
                     child: ScanButton(
@@ -170,6 +178,8 @@ class _ScanPRMScreenState extends State<ScanPRMScreen> {
                       icon: Icon(Icons.crop_square_rounded, size: 62.0),
                     ),
                   ),
+
+                  // Undo
                   Padding(
                     padding: const .only(bottom: 48.0),
                     child: ScanButton(

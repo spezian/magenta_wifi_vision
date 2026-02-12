@@ -13,8 +13,11 @@ class _HeatmapScreenState extends State<HeatmapScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MagentaAppBar(title: Text("Layout Name")),
+
+      // We use a stack so that we can display the legend over the scrollable map.
       body: Stack(
         children: [
+          // Legend
           Align(
             alignment: Alignment.topCenter,
             child: SizedBox(
@@ -54,12 +57,15 @@ class _HeatmapScreenState extends State<HeatmapScreen> {
               ),
             ),
           ),
+
+          // The map. Is currently just a example image.
           Align(
             alignment: Alignment.center,
             child: Image.asset("assets/example_heatmap.png", scale: 2),
           ),
         ],
       ),
+
       floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.end,

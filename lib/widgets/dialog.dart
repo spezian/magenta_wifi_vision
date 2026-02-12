@@ -60,7 +60,7 @@ class MagentaDialog extends StatelessWidget {
           : Padding(padding: const .only(top: 24.0), child: titleWidget),
       titlePadding: .zero,
       content: contentWidget,
-      contentPadding: .only(top: 2.0, bottom: 12.0),
+      contentPadding: .only(top: 4.0, bottom: 12.0, left: 12.0, right: 12.0),
       actionsAlignment: .center,
       backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(

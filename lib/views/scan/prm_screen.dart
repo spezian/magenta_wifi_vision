@@ -6,9 +6,11 @@ import 'package:ar_flutter_plugin_plus/managers/ar_session_manager.dart';
 import 'package:ar_flutter_plugin_plus/models/ar_node.dart';
 import 'package:flutter/material.dart';
 import 'package:ar_flutter_plugin_plus/ar_flutter_plugin.dart';
+import 'package:magenta_wifi_vision/views/heatmap_screen.dart';
 import 'package:magenta_wifi_vision/widgets/dialog.dart';
 import 'package:magenta_wifi_vision/widgets/filled_button.dart';
 import 'package:magenta_wifi_vision/widgets/scan_button.dart';
+import 'package:magenta_wifi_vision/widgets/text_form_field.dart';
 import 'package:vector_math/vector_math_64.dart' hide Colors;
 
 class ScanPRMScreen extends StatefulWidget {
@@ -19,6 +21,8 @@ class ScanPRMScreen extends StatefulWidget {
 }
 
 class _ScanPRMScreenState extends State<ScanPRMScreen> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   ARSessionManager? _arSessionManager;
   ARObjectManager? _arObjectManager;
 
@@ -45,7 +49,7 @@ class _ScanPRMScreenState extends State<ScanPRMScreen> {
     );
     _arObjectManager!.onInitialize();
 
-    var newNode = ARNode(
+    var marioNode = ARNode(
       type: NodeType.localGLB,
       uri: "assets/mario_obj.glb",
       scale: Vector3(0.02, 0.02, 0.02),
@@ -53,12 +57,81 @@ class _ScanPRMScreenState extends State<ScanPRMScreen> {
       rotation: Vector4(1.0, 0.0, 0.0, 0.0),
     );
 
-    _arObjectManager!.addNode(newNode);
+    _arObjectManager!.addNode(marioNode);
+  }
+
+  void showNameSavingDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Form(
+          key: _formKey,
+          child: MagentaDialog(
+            title: Text("Name your room"),
+            showBackChevron: true,
+            content: MagentaTextFormField(
+              hintText: "Name",
+              validator: (String? value) {
+                if (value == null || value.isEmpty) {
+                  return "Please enter some text.";
+                }
+
+                return null;
+              },
+            ),
+            actions: [
+              MagentaFilledButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                        const HeatmapScreen(),
+                      ),
+                            (Route<dynamic> route) => route.isFirst
+                    );
+                  }
+                },
+                child: Text("Save"),
+              ),
+            ],
+          ),
+        );
+      }
+    );
+  }
+
+  void showConfirmationDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return MagentaDialog(
+          title: Text("Room Complete"),
+          content: Text("Do you want to finish the scan?"),
+          actions: [
+            MagentaFilledButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                showNameSavingDialog();
+              },
+              child: Text("Yes"),
+            ),
+            MagentaFilledButton(
+              onPressed: () =>
+                  Navigator.of(context).maybePop(),
+              color: .black,
+              child: Text("No"),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           ARView(onARViewCreated: onARViewCreated),
@@ -92,29 +165,7 @@ class _ScanPRMScreenState extends State<ScanPRMScreen> {
                   Padding(
                     padding: const .only(bottom: 128.0),
                     child: ScanButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return MagentaDialog(
-                              title: Text("Room Complete"),
-                              content: Text("Do you want to finish the scan?"),
-                              actions: [
-                                MagentaFilledButton(
-                                  onPressed: () {},
-                                  child: Text("Yes"),
-                                ),
-                                MagentaFilledButton(
-                                  onPressed: () =>
-                                      Navigator.of(context).maybePop(),
-                                  color: .black,
-                                  child: Text("No"),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      },
+                      onPressed: () => showConfirmationDialog(),
                       padding: .all(24.0),
                       icon: Icon(Icons.crop_square_rounded, size: 62.0),
                     ),

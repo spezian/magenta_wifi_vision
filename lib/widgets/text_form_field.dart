@@ -72,7 +72,7 @@ class _MagentaTextFormFieldState extends State<MagentaTextFormField> {
         filled: true,
         error: error != null
             ? Padding(
-                padding: const .only(bottom: 8.0),
+                padding: const .only(bottom: 4.0),
                 child: Row(
                   spacing: 4.0,
                   children: [

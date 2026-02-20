@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:magenta_wifi_vision/theme.dart';
-import 'package:magenta_wifi_vision/views/start_screen.dart';
+import 'package:magenta_wifi_vision/views/intro_screen.dart';
 
 void main() {
   runApp(const App());
@@ -14,7 +14,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Magenta WifiVision',
       theme: getMagentaTheme(context),
-      home: StartScreen(),
+      home: IntroductionScreen(),
     );
   }
 }

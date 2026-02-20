@@ -24,7 +24,7 @@ class MagentaPillButton extends StatelessWidget {
       ),
       onPressed: onPressed,
       child: DefaultTextStyle(
-        style: TextStyle(fontSize: _fontSize, fontFamily: 'ABeeZee'),
+        style: TextStyle(fontSize: _fontSize, fontFamily: 'ABeeZee', color: Colors.white),
         child: Padding(padding: _padding, child: child),
       ),
     );

@@ -1,64 +1,39 @@
-import 'package:ar_flutter_plugin_plus/datatypes/node_types.dart';
-import 'package:ar_flutter_plugin_plus/managers/ar_anchor_manager.dart';
-import 'package:ar_flutter_plugin_plus/managers/ar_location_manager.dart';
-import 'package:ar_flutter_plugin_plus/managers/ar_object_manager.dart';
-import 'package:ar_flutter_plugin_plus/managers/ar_session_manager.dart';
-import 'package:ar_flutter_plugin_plus/models/ar_node.dart';
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:ar_flutter_plugin_plus/ar_flutter_plugin.dart';
 import 'package:magenta_wifi_vision/views/heatmap_screen.dart';
 import 'package:magenta_wifi_vision/widgets/dialog.dart';
 import 'package:magenta_wifi_vision/widgets/filled_button.dart';
 import 'package:magenta_wifi_vision/widgets/scan_button.dart';
 import 'package:magenta_wifi_vision/widgets/text_form_field.dart';
-import 'package:vector_math/vector_math_64.dart' hide Colors;
 
-class ScanPRMScreen extends StatefulWidget {
-  const ScanPRMScreen({super.key});
+class ScanScreen extends StatefulWidget {
+  const ScanScreen({super.key, required this.camera});
+
+  final CameraDescription camera;
 
   @override
-  State<ScanPRMScreen> createState() => _ScanPRMScreenState();
+  State<ScanScreen> createState() => _ScanScreenState();
 }
 
-class _ScanPRMScreenState extends State<ScanPRMScreen> {
+class _ScanScreenState extends State<ScanScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  ARSessionManager? _arSessionManager;
-  ARObjectManager? _arObjectManager;
+  late CameraController _controller;
+  late Future<void> _initializeControllerFuture;
 
   @override
   void initState() {
     super.initState();
-  }
 
-  /// Configures and initialises the ARView.
-  void onARViewCreated(
-    ARSessionManager arSessionManager,
-    ARObjectManager arObjectManager,
-    ARAnchorManager arAnchorManager,
-    ARLocationManager arLocationManager,
-  ) {
-    _arSessionManager = arSessionManager;
-    _arObjectManager = arObjectManager;
-
-    _arSessionManager!.onInitialize(
-      showFeaturePoints: false,
-      showPlanes: false,
-      showWorldOrigin: true,
-      showAnimatedGuide: true,
-      handleTaps: false,
+    _controller = CameraController(
+      // Get a specific camera from the list of available cameras.
+      widget.camera,
+      // Define the resolution to use.
+      ResolutionPreset.max,
+      enableAudio: false,
     );
-    _arObjectManager!.onInitialize();
 
-    // We place a Mario 3d model at the world origin.
-    var marioNode = ARNode(
-      type: NodeType.localGLB,
-      uri: "assets/mario_obj.glb",
-      scale: Vector3(0.02, 0.02, 0.02),
-      position: Vector3(0.0, 0.0, 0.0),
-      rotation: Vector4(1.0, 0.0, 0.0, 0.0),
-    );
-    _arObjectManager!.addNode(marioNode);
+    _initializeControllerFuture = _controller.initialize();
   }
 
   void showNameSavingDialog() {
@@ -130,13 +105,35 @@ class _ScanPRMScreenState extends State<ScanPRMScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final deviceRatio = size.width / size.height;
+
     return Scaffold(
       // Disallowing keyboard to resize scaffold.
       resizeToAvoidBottomInset: false,
 
       body: Stack(
         children: [
-          ARView(onARViewCreated: onARViewCreated),
+          FutureBuilder(
+            future: _initializeControllerFuture,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                return Center(
+                    child: Transform.scale(
+                      scale: _controller.value.aspectRatio / deviceRatio,
+                        child: AspectRatio(
+                          aspectRatio: _controller.value.aspectRatio,
+                            child: CameraPreview(_controller)
+                        )
+                    )
+                );
+              }
+
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            },
+          ),
 
           // Back button
           Align(

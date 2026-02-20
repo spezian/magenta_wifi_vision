@@ -1,12 +1,10 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:magenta_wifi_vision/views/scan/prm_screen.dart';
-import 'package:magenta_wifi_vision/views/scan/roomplan_screen.dart';
+import 'package:magenta_wifi_vision/views/intro_screen.dart';
+import 'package:magenta_wifi_vision/views/scan_screen.dart';
 import 'package:magenta_wifi_vision/widgets/dialog.dart';
 import 'package:magenta_wifi_vision/widgets/pill_button.dart';
-import 'dart:io' show Platform;
-
-import 'package:roomplan_flutter/api/room_plan_scanner.dart';
 
 import '../../widgets/filled_button.dart';
 
@@ -32,59 +30,80 @@ class _StartScanViewState extends State<StartScanView> {
               width: 160.0,
               height: 160.0,
             ),
-            MagentaPillButton.large(
-              onPressed: () async {
-                if (!mounted) return;
+            Column(
+              spacing: 8.0,
+              children: [
+                MagentaPillButton.large(
+                  onPressed: () async {
+                    if (!mounted) return;
 
-                if (!Platform.isIOS || !(await RoomPlanScanner.isSupported())) {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const ScanPRMScreen(),
-                    ),
-                  );
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return MagentaDialog(
+                          title: Text("Which tech?"),
+                          showBackChevron: true,
+                          actions: [
+                            MagentaFilledButton(
+                              onPressed: () {
+                                Navigator.of(context).maybePop();
 
-                  return;
-                }
 
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return MagentaDialog(
-                      title: Text("Which tech?"),
-                      actions: [
-                        MagentaFilledButton(
-                          onPressed: () {
-                            Navigator.of(context).maybePop();
 
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const ScanRoomplanScreen(),
-                              ),
-                            );
-                          },
-                          child: Text("Roomplan"),
-                        ),
-                        MagentaFilledButton(
-                          onPressed: () {
-                            Navigator.of(context).maybePop();
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          MagentaDialog(
+                                            title: Text("Info"),
+                                            content: Text("Für Apple gibt es eine eigene native Kartenscan-Technologie. Da wir uns im Web befinden, können wir sie leider nicht testen."),
+                                            actions: [
+                                              MagentaFilledButton(
+                                                onPressed: () {
+                                                  Navigator.of(context).maybePop();
+                                                },
+                                                child: Text("Zurück"),
+                                              )
+                                            ],
+                                          )
+                                  ),
+                                );
+                              },
+                              child: Text("Roomplan"),
+                            ),
+                            MagentaFilledButton(
+                              onPressed: () async {
+                                final cameras = await availableCameras();
+                                final firstCamera = cameras.first;
 
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => const ScanPRMScreen(),
-                              ),
-                            );
-                          },
-                          color: .black,
-                          child: Text("PRM"),
-                        ),
-                      ],
+                                if (!context.mounted) return;
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) => ScanScreen(camera: firstCamera,),
+                                  ),
+                                );
+                              },
+                              color: .black,
+                              child: Text("PRM"),
+                            ),
+                          ],
+                        );
+                      },
                     );
                   },
-                );
-              },
-              child: Text("Start Scan"),
-            ),
+                  child: Text("Start Scan"),
+                ),
+                MagentaPillButton.small(
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => IntroductionScreen(),
+                      ),
+                    );
+                  },
+                  child: Text("Zurück"),
+                )
+              ],
+            )
           ],
         ),
       ],

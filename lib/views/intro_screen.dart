@@ -41,7 +41,7 @@ class IntroductionScreen extends StatelessWidget {
                           height: 40.0,
                         ),
                         Text(
-                          "WifiAnalyzer Prototyp",
+                          "WifiVision Prototyp",
                           style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: Colors.white),
                         )
                       ],

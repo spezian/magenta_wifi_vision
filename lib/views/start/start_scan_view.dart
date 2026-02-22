@@ -72,15 +72,40 @@ class _StartScanViewState extends State<StartScanView> {
                             ),
                             MagentaFilledButton(
                               onPressed: () async {
-                                final cameras = await availableCameras();
-                                final firstCamera = cameras.first;
+                                try {
+                                  final cameras = await availableCameras();
+                                  CameraDescription camera = cameras.first;
 
-                                if (!context.mounted) return;
-                                Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                    builder: (context) => ScanScreen(camera: firstCamera,),
-                                  ),
-                                );
+                                  for (final c in cameras) {
+                                    if (c.lensDirection == .back) {
+                                      camera = c;
+                                    }
+                                  }
+
+                                  if (!context.mounted) return;
+                                  Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                      builder: (context) => ScanScreen(camera: camera,),
+                                    ),
+                                  );
+                                } on CameraException {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                        builder: (context) => MagentaDialog(
+                                          title: Text("Keine Kamera verfügbar"),
+                                          content: Text("Bitte benutze ein Gerät mit einer Kamera auf der Rückseite."),
+                                          actions: [
+                                            MagentaFilledButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: Text("Zurück"),
+                                            )
+                                          ],
+                                        )
+                                    )
+                                  );
+                                }
                               },
                               color: .black,
                               child: Text("PRM"),
